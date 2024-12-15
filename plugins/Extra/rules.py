@@ -1,3 +1,5 @@
+
+@Client.on_message(filters.private & filters.command(["rules"]))
 🦋 𝗥𝗨𝗟𝗘𝗦 🦋
 
 Sᴇᴀʀᴄʜ Mᴏᴠɪᴇ Wɪᴛʜ Cᴏʀʀᴇᴄᴛ Sᴘᴇʟʟɪɴɢ :
