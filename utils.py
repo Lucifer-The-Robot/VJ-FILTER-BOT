@@ -709,6 +709,24 @@ async def get_cap(settings, remaining_seconds, files, query, total_results, sear
     return cap
 
 
+def get_status():
+    tz = pytz.timezone('Asia/Colombo')
+    hour = datetime.now(tz).time().hour
+    if 5 <= hour < 12:
+        sts = "ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ ☕"
+    elif 12 <= hour < 18:
+        sts = "ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ 😈"
+    else:
+        sts = "ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ 🥱"
+    return sts
+
+async def is_check_admin(bot, chat_id, user_id):
+    try:
+        member = await bot.get_chat_member(chat_id, user_id)
+        return member.status in [enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER]
+    except:
+        return False
+
 async def get_seconds(time_string):
     def extract_value_and_unit(ts):
         value = ""
@@ -717,7 +735,7 @@ async def get_seconds(time_string):
         while index < len(ts) and ts[index].isdigit():
             value += ts[index]
             index += 1
-        unit = ts[index:]
+        unit = ts[index:].lstrip()
         if value:
             value = int(value)
         return value, unit
@@ -736,3 +754,17 @@ async def get_seconds(time_string):
         return value * 86400 * 365
     else:
         return 0
+
+def get_readable_time(seconds):
+    periods = [('days', 86400), ('hour', 3600), ('min', 60), ('sec', 1)]
+    result = ''
+    for period_name, period_seconds in periods:
+        if seconds >= period_seconds:
+            period_value, seconds = divmod(seconds, period_seconds)
+            result += f'{int(period_value)}{period_name}'
+    return result
+
+async def save_default_settings(id):
+    await db.reset_group_settings(id)
+    current = await db.get_settings(id)
+    temp.SETTINGS.update({id: current})
