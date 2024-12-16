@@ -693,9 +693,6 @@ async def get_cap(settings, remaining_seconds, files, query, total_results, sear
                     url=imdb['url'],
                     **locals()
                 )
-                cap+="<b>\n\nPowered by : <a href='https://t.me/Ni_Movies'>Ni MOvies</a></b>\n"
-            else:
-                cap = f"<b>Hᴇʏ {query.from_user.mention}, I Fᴏᴜɴᴅ Sᴏᴍᴇ Rᴇꜱᴜʟᴛꜱ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ : {search}</b>"
     else:
        cap = f"<b>Hᴇʏ {query.from_user.mention}, I Fᴏᴜɴᴅ Sᴏᴍᴇ Rᴇꜱᴜʟᴛꜱ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ : {search}</b>"
     return cap
