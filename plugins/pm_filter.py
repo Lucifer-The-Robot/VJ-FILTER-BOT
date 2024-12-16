@@ -2707,12 +2707,6 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             url=imdb['url'],
             **locals()
         )
-        temp.IMDB_CAP[message.from_user.id] = cap
-        if not settings["button"]
-                cap+="<b>\n\nPowered by : <a href='https://t.me/Ni_Movies'>Ni MOvies</a></b>\n"
-    else:
-        if settings["button"]:
-            cap = f"<b>Hᴇʏ {query.from_user.mention}, I Fᴏᴜɴᴅ Sᴏᴍᴇ Rᴇꜱᴜʟᴛꜱ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ : {search}</b>"
         else:
             cap = f"<b>Hᴇʏ {query.from_user.mention}, I Fᴏᴜɴᴅ Sᴏᴍᴇ Rᴇꜱᴜʟᴛꜱ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ : {search}</b>"
     if imdb and imdb.get('poster'):
